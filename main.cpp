@@ -16,8 +16,8 @@ const int gStageHeight = 5;
 enum Object
 {
 	OBJ_SPACE,
-	OBJ_WALL,
 	OBJ_GOAL,
+	OBJ_WALL,
 	OBJ_BLOCK,
 	OBJ_BLOCK_ON_GOAL,
 	OBJ_PLAYER,
@@ -114,7 +114,7 @@ void Initalize(Object* stage, int w, int h, const char* data)
 
 void Draw(const Object* stage, int w, int h)
 {
-	const char table[]{ ' ','#', '.', 'o', 'O', 'p', 'P' };
+	const char table[]{ ' ','.', '#', 'o', 'O', 'p', 'P' };
 
 	for (int y = 0; y < h; y++)
 	{
@@ -172,43 +172,19 @@ void Update(Object* stage, char input, int w, int h)
 
 	int ti = ty * w + tx;
 
-	if (stage[ti] == OBJ_SPACE)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER;
-	}
-	else if (stage[ti] == OBJ_GOAL)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER_ON_GOAL;
+	if (stage[ti] == OBJ_SPACE || stage[ti] == OBJ_GOAL)
+	{		
+		stage[ti] = (Object)(OBJ_PLAYER + stage[ti]);
+		stage[i] = stage[i]==OBJ_PLAYER ? OBJ_SPACE : OBJ_GOAL;
 	}
 
 	int tti = (ty + dy) * w + tx + dx;
 
-	if (stage[ti] == OBJ_BLOCK && stage[tti] == OBJ_SPACE)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER;
-		stage[tti] = OBJ_BLOCK;
-	}
-	else if (stage[ti] == OBJ_BLOCK && stage[tti] == OBJ_GOAL)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER;
-		stage[tti] = OBJ_BLOCK_ON_GOAL;
-	}
-
-	if (stage[ti] == OBJ_BLOCK_ON_GOAL && stage[tti] == OBJ_SPACE)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER_ON_GOAL;
-		stage[tti] = OBJ_BLOCK;
-	}
-	else if (stage[ti] == OBJ_BLOCK_ON_GOAL && stage[tti] == OBJ_GOAL)
-	{
-		stage[i] = OBJ_SPACE;
-		stage[ti] = OBJ_PLAYER_ON_GOAL;
-		stage[tti] = OBJ_BLOCK_ON_GOAL;
+	if ((stage[ti] == OBJ_BLOCK || stage[ti] == OBJ_BLOCK_ON_GOAL) && (stage[tti] == OBJ_SPACE || stage[tti] == OBJ_GOAL))
+	{		
+		stage[tti] = (Object)(OBJ_BLOCK + stage[tti]);
+		stage[ti] = (Object)(OBJ_PLAYER + stage[ti] - OBJ_BLOCK);
+		stage[i] = stage[i] == OBJ_PLAYER ? OBJ_SPACE : OBJ_GOAL;
 	}
 
 }
