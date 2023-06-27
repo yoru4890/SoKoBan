@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoKoBan", "SoKoBan.vcxproj", "{AC5783B3-A692-4F7D-8002-6F6F2E983030}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Debug|x64.ActiveCfg = Debug|x64
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Debug|x64.Build.0 = Debug|x64
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Debug|x86.ActiveCfg = Debug|Win32
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Debug|x86.Build.0 = Debug|Win32
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Release|x64.ActiveCfg = Release|x64
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Release|x64.Build.0 = Release|x64
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Release|x86.ActiveCfg = Release|Win32
+		{AC5783B3-A692-4F7D-8002-6F6F2E983030}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {70002C70-4019-4508-B32C-974DCBF5F92C}
+	EndGlobalSection
+EndGlobal
