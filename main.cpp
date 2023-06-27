@@ -169,6 +169,48 @@ void Update(Object* stage, char input, int w, int h)
 		std::cerr << "Invalid player position" << std::endl;
 		return;
 	}
+
+	int ti = ty * w + tx;
+
+	if (stage[ti] == OBJ_SPACE)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER;
+	}
+	else if (stage[ti] == OBJ_GOAL)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER_ON_GOAL;
+	}
+
+	int tti = (ty + dy) * w + tx + dx;
+
+	if (stage[ti] == OBJ_BLOCK && stage[tti] == OBJ_SPACE)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER;
+		stage[tti] = OBJ_BLOCK;
+	}
+	else if (stage[ti] == OBJ_BLOCK && stage[tti] == OBJ_GOAL)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER;
+		stage[tti] = OBJ_BLOCK_ON_GOAL;
+	}
+
+	if (stage[ti] == OBJ_BLOCK_ON_GOAL && stage[tti] == OBJ_SPACE)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER_ON_GOAL;
+		stage[tti] = OBJ_BLOCK;
+	}
+	else if (stage[ti] == OBJ_BLOCK_ON_GOAL && stage[tti] == OBJ_GOAL)
+	{
+		stage[i] = OBJ_SPACE;
+		stage[ti] = OBJ_PLAYER_ON_GOAL;
+		stage[tti] = OBJ_BLOCK_ON_GOAL;
+	}
+
 }
 
 bool IsClear(const Object* stage, int w, int h)
