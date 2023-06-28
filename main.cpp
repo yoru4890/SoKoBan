@@ -163,9 +163,6 @@ void Update(Object* stage, char input, int w, int h)
 
 	int tx = x + dx;
 	int ty = y + dy;
-	
-	int tx2 = tx + dx;
-	int ty2 = ty + dy;
 
 	if (tx < 0 || ty < 0 || tx >= w || ty >= h)
 	{
@@ -174,20 +171,6 @@ void Update(Object* stage, char input, int w, int h)
 	}
 
 	int p = y * w + x;
-	int tp = ty * w + tx;
-	int tp2 = ty2 * w + tx2;
-
-	if (stage[tp] == OBJ_BLOCK || stage[tp] == OBJ_BLOCK_ON_GOAL)
-	{
-		Move(stage[tp], stage[tp2]);
-		Move(stage[p], stage[tp]);
-	}
-	else
-	{
-		Move(stage[p], stage[tp]);
-	}
-
-	/*int p = y * w + x;
 	int tp = ty * w + tx;
 
 	if (stage[tp] == OBJ_SPACE || stage[tp] == OBJ_GOAL)
@@ -214,24 +197,7 @@ void Update(Object* stage, char input, int w, int h)
 			stage[tp] = (stage[tp] == OBJ_BLOCK_ON_GOAL) ? OBJ_PLAYER_ON_GOAL : OBJ_PLAYER;
 			stage[p] = (stage[p] == OBJ_PLAYER_ON_GOAL) ? OBJ_GOAL : OBJ_SPACE;
 		}
-	}*/
-
-	/*int ti = ty * w + tx;
-
-	if (stage[ti] == OBJ_SPACE || stage[ti] == OBJ_GOAL)
-	{		
-		stage[ti] = (Object)(OBJ_PLAYER + stage[ti]);
-		stage[i] = stage[i]==OBJ_PLAYER ? OBJ_SPACE : OBJ_GOAL;
 	}
-
-	int tti = (ty + dy) * w + tx + dx;
-
-	if ((stage[ti] == OBJ_BLOCK || stage[ti] == OBJ_BLOCK_ON_GOAL) && (stage[tti] == OBJ_SPACE || stage[tti] == OBJ_GOAL))
-	{		
-		stage[tti] = (Object)(OBJ_BLOCK + stage[tti]);
-		stage[ti] = (Object)(OBJ_PLAYER + stage[ti] - OBJ_BLOCK);
-		stage[i] = stage[i] == OBJ_PLAYER ? OBJ_SPACE : OBJ_GOAL;
-	}*/
 
 }
 
