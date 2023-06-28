@@ -163,6 +163,9 @@ void Update(Object* stage, char input, int w, int h)
 
 	int tx = x + dx;
 	int ty = y + dy;
+	
+	int tx2 = tx + dx;
+	int ty2 = ty + dy;
 
 	if (tx < 0 || ty < 0 || tx >= w || ty >= h)
 	{
@@ -170,7 +173,50 @@ void Update(Object* stage, char input, int w, int h)
 		return;
 	}
 
-	int ti = ty * w + tx;
+	int p = y * w + x;
+	int tp = ty * w + tx;
+	int tp2 = ty2 * w + tx2;
+
+	if (stage[tp] == OBJ_BLOCK || stage[tp] == OBJ_BLOCK_ON_GOAL)
+	{
+		Move(stage[tp], stage[tp2]);
+		Move(stage[p], stage[tp]);
+	}
+	else
+	{
+		Move(stage[p], stage[tp]);
+	}
+
+	/*int p = y * w + x;
+	int tp = ty * w + tx;
+
+	if (stage[tp] == OBJ_SPACE || stage[tp] == OBJ_GOAL)
+	{
+		stage[tp] = (stage[tp] == OBJ_GOAL) ? OBJ_PLAYER_ON_GOAL : OBJ_PLAYER;
+		stage[p] = (stage[p] == OBJ_PLAYER_ON_GOAL) ? OBJ_GOAL : OBJ_SPACE;
+	}
+	else if (stage[tp] == OBJ_BLOCK || stage[tp] == OBJ_BLOCK_ON_GOAL)
+	{
+		int tx2 = tx + dx;
+		int ty2 = ty + dy;
+
+		if (tx2 < 0 || ty2 < 0 || tx2 >= w || ty2 >= h)
+		{
+			std::cerr << "Invalid block position" << std::endl;
+			return;
+		}
+
+		int tp2 = ty2 * w + tx2;
+
+		if (stage[tp2] == OBJ_SPACE || stage[tp2] == OBJ_GOAL)
+		{
+			stage[tp2] = (stage[tp2] == OBJ_GOAL) ? OBJ_BLOCK_ON_GOAL : OBJ_BLOCK;
+			stage[tp] = (stage[tp] == OBJ_BLOCK_ON_GOAL) ? OBJ_PLAYER_ON_GOAL : OBJ_PLAYER;
+			stage[p] = (stage[p] == OBJ_PLAYER_ON_GOAL) ? OBJ_GOAL : OBJ_SPACE;
+		}
+	}*/
+
+	/*int ti = ty * w + tx;
 
 	if (stage[ti] == OBJ_SPACE || stage[ti] == OBJ_GOAL)
 	{		
@@ -185,7 +231,7 @@ void Update(Object* stage, char input, int w, int h)
 		stage[tti] = (Object)(OBJ_BLOCK + stage[tti]);
 		stage[ti] = (Object)(OBJ_PLAYER + stage[ti] - OBJ_BLOCK);
 		stage[i] = stage[i] == OBJ_PLAYER ? OBJ_SPACE : OBJ_GOAL;
-	}
+	}*/
 
 }
 
